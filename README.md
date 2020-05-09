@@ -10,13 +10,13 @@ Q1:AWGN信道下硬判决与软判决误码率曲线仿真。<br>Q2：单径瑞�
 # 实现
 ## 前言
 在无编码无交织条件下，AWGN信道与瑞利信道理论误码率为：<br>
-<div align=center><img width="370" height="320" src="./result/theoretical.jpg" alt="理论误码率曲线"/></div><br>
+![理论曲线](./result/theoretical.jpg)<br>
 ## Q1
 卷积码可以用MATLAB函数poly2trellis与convenc实现。硬判决与软判决维特比译码可以用poly2trellis函数实现。<br>
 交织用matlab自带的matintrlv函数实现。<br>
 利用Eb/NO计算噪声功率N0公式(实信号):N0 = 0.5*(F_s/R_b)*10.^(-Eb/N0/10)。<br>
 噪声序列生成：noise= sqrt(N0).*randn(1,4*simulation_point)。<br>
-<div align=center><img width="370" height="320" src="./result/q1.jpg" alt="AWGN信道下仿真误码率曲线"/></div><br>
+![AWGN仿真](./result/q1.jpg)<br>
 如上是AWGN信道下误码率曲线仿真结果。由此可以得出：<br>
 ①当𝐸_𝑏/𝑁_0=6dB时，硬判决译码下，系统的误码率就达到了10^(−5) 之下，与𝐸_𝑏/𝑁_0=10dB时无编码理论误码率在同一量级。这说明信道编码可以提升系统误码性能。<br>
 ②软判决译码下的误码率曲线在硬判决下的误码率曲线的下方。这说明在软判决译码下，系统的误码性能更好。<br>
@@ -42,18 +42,18 @@ end
 handle_data = sample_data.*h_data+noise;%瑞利信道的输出
 ```
 ### Rayleigh 信道仿真结果如下
-<div align=center><img width="370" height="320" src="./result/q2.jpg" alt="Rayleigh信道下仿真误码率曲线"/></div><br>
+![Rayleigh信道下仿真误码率曲线](./result/q2.jpg)<br>
 **结论**<br>
 ①无交织的硬判决译码和无交织的软判决译码的误码率曲线几乎重合，且与Rayleigh信道下无编码的误码率曲线几乎一致。这说明对于Rayleigh信道下成串出错的情况，信道编码技术无法有效检测校正，此时需要联合使用信道编码和交织技术。<br>
 ②有交织误码率曲线与无交织误码率曲线几乎重合。这是由于100小于最小交织器深度。<br>
 **将深度改为10,000有如下结果**<br>
-<div align=center><img width="380" height="320" src="./result/q2_2.jpg" alt="深度10000时，Rayleigh信道下仿真误码率曲线"/></div><br>
+![深度10000时，Rayleigh信道下仿真误码率曲线](./result/q2_2.jpg")<br>
 可以观察到到一下两个现象<br>
 ①可以明显的观察到有交织曲线（实线）位于无交织曲线（点划线）的下方，即按深度10000交织后系统的误码性能提升了。<br>
 ②有交织的硬判决译码与软判决译码的误码率曲线也分离开来。这再一次说明了Rayleigh信道下需要联合使用交织与信道编码技术。<br>
 ## Q3
 深度分别为10^2,10^3,10^4时，硬判决译码下误码率曲线如下：<br>
-<div align=center><img width="370" height="320" src="./result/q3.jpg" alt="三种深度下，Rayleigh信道下仿真误码率曲线"/></div><br>
+![三种深度下，Rayleigh信道下仿真误码率曲线](./result/q3.jpg")<br>
 **结论**<br>
 ①因为最小交织器深度为2000。故与理论误码率曲线相比，深度100与深度1000的系统误码率没有得到明显改善。误码率仍在同一量级。但是相较于深度为100的情况，深度为1000时系统误码性能略有改善。<br>
 ②深度为10000时，与理论误码率曲线相比，系统的误码率曲线在𝐸_𝑏/𝑁_0为10dB时降到了10^(−2)之下。系统的误码性能得到了明显的改善。<br>
