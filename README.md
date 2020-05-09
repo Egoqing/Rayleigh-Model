@@ -10,8 +10,10 @@ Q1:AWGN信道下硬判决与软判决误码率曲线仿真。<br>Q2：单径瑞�
 # 实现
 ## 前言
 在无编码无交织条件下，AWGN信道与瑞利信道理论误码率为：<br>
-![理论误码率曲线](https://github.com/Egoqing/Rayleigh-Model/raw/master/result/theoretical.jpg)<br>
+![理论误码率曲线](https://github.com/Egoqing/Rayleigh-Model/blob/master/result/theoretical.jpg)<br>
 ## Q1
 卷积码可以用MATLAB函数poly2trellis与convenc实现。硬判决与软判决维特比译码可以用poly2trellis函数实现。<br>
 交织用matlab自带的matintrlv函数实现。<br>
-利用Eb/NO计算噪声功率N0公式(实信号)：N0 = 0.5*(F_s/R_b)*10.^(-Eb/N0/10)
+利用Eb/NO计算噪声功率N0公式(实信号):N0 = 0.5*(F_s/R_b)*10.^(-Eb/N0/10)。<br>
+噪声序列生成：noise= sqrt(N0).*randn(1,4*simulation_point)。<br>
+![AWGN信道下仿真误码率曲线](https://github.com/Egoqing/Rayleigh-Model/blob/master/result/q1.jpg)<br>
